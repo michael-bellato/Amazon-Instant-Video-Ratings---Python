@@ -3,6 +3,12 @@
 Created on Fri Jun 02 16:20:15 2017
 
 @author: Michael
+Extract data creates summary CSV for users and products.
+CSV files must be created or downloaded to Analyze
+Analyze plots a histogram for the number of users across the number of reviews 
+            per user.
+     ...plots a scatter plot of users who made 3 or more reviews for their 
+            individual reviews and the respective product average review.
 """
 # Load Review file
 # AmazonRev
@@ -23,10 +29,10 @@ df_user = pd.read_csv(path_user)              # Summary of Users - avg rating
 df_prod = pd.read_csv(path_prod)              # Summary of product - avg rating
 
 # plot the average product rating by the user's average rating
-sortn = np.sort(df_user.user_count)
-threshind = round(len(sortn)*.90)
-threshn = sortn[threshind]
-topind = df_user.user_count>threshn
+sortn = np.sort(df_user.user_count)           # sort users by number of reviews 
+threshind = round(len(sortn)*.90)             # create threshold for top 10% of reviewers
+threshn = sortn[threshind]                    # identify threshold place
+topind = df_user.user_count>threshn           # select users above threshold
 # top_vals = np.array(df_user.user_count)[topind]
 
 # Histogram of number of reviews per user
